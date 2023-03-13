@@ -11,7 +11,7 @@ export default function promiseTask<Result = unknown, Err = Error>(
     .then<[null, Result]>((data: Result) => [null, data])
     .catch<[Err, null]>((err: Err) => {
       if (errorExt) {
-        return [Object.assign({}, err, errorExt), null]
+        return [{ ...err, ...errorExt }, null];
       }
       return [err, null];
     });
